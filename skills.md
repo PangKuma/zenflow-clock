@@ -50,6 +50,44 @@ Builds the specific "ZenFlow" clock project requirements.
     -   `src/Clock.js`: Time logic & DOM updates.
     -   `src/Background.js`: Canvas animation logic.
 
+## Skill: implement-zenflow-glass-ui
+### Description
+Creates premium "thick glass" material UI with prismatic border effects.
+### Core Techniques
+1.  **Physical Glass Material**:
+    -   **Backdrop Filter**: `backdrop-filter: blur(50px) saturate(180%)` - High blur + saturation boost makes background colors "explode" through glass
+    -   **Near-Transparent Fill**: `background: rgba(255, 255, 255, 0.01)` - Almost invisible, lets fluid background dominate
+    -   **Layered Box Shadows** (The "Thickness" Secret):
+        ```css
+        box-shadow:
+          inset 0 0 0 1px rgba(255, 255, 255, 0.1),  /* Inner edge */
+          inset 0 1px 0 0 rgba(255, 255, 255, 0.3),  /* Top highlight (polished edge) */
+          0 20px 50px rgba(0, 0, 0, 0.1);            /* Outer shadow (depth) */
+        ```
+    -   **Super Smooth Corners**: `border-radius: 60px`
+2.  **Prismatic Border Effect**:
+    -   Semi-transparent glass border + `saturate(180%)` filter
+    -   When bright background orbs pass behind, glass appears to "glow" with that color naturally
+    -   No manual color matching needed - physics-based rendering
+3.  **Scale & Typography**:
+    -   Card: `width: 60vw`, `aspect-ratio: 16/9`
+    -   Font: `20vw` (massive), `font-weight: 800`, `letter-spacing: -0.04em`
+    -   Numbers feel "carved into" the glass
+4.  **Theme System**:
+    -   Data-driven via `data-theme` attribute
+    -   Dark: Glass border `rgba(255,255,255,0.15)`, Background `#000000`
+    -   Light: Glass border `rgba(0,0,0,0.1)`, Background `#F5F5F7`
+5.  **Light Source Requirements**:
+    -   Background orbs must be VIBRANT (neon colors recommended)
+    -   Opacity ≥ 0.8 for strong prismatic effect
+    -   Recommended colors: Cyan (`#00ffff`), Magenta (`#ff00ff`), Green (`#00ff88`), Pink (`#ff6b9d`)
+
+### Production Example
+See: https://github.com/PangKuma/zenflow-clock
+- Canvas fluid background + Glass card UI
+- No frameworks (Vite + Vanilla JS)
+- 60fps render loop with `requestAnimationFrame`
+
 ## Skill: git-commit-semantic
 ### Description
 Generates semantic git commit messages.
@@ -58,3 +96,37 @@ Generates semantic git commit messages.
 -   `fix:` for bug fixes
 -   `style:` for visual adjustments
 -   `refactor:` for code restructuring
+
+---
+
+## Project: ZenFlow Clock (Completed)
+**Status**: ✅ Production Ready
+**Repository**: https://github.com/PangKuma/zenflow-clock
+**Tech Stack**: Vite + Vanilla JavaScript + Canvas 2D + Pure CSS
+
+### Implemented Skills
+- ✅ `scaffold-zenflow-clock` - Project architecture
+- ✅ `implement-apple-aesthetic` - Typography & motion
+- ✅ `implement-canvas-fluid-bg` - Fluid background with neon orbs
+- ✅ `implement-zenflow-glass-ui` - Thick glass material (NEW)
+
+### Key Achievements
+1. **Visual Polish**: 5 Art Director feedback iterations → premium glass material
+2. **Performance**: 60fps Canvas animation, minimal DOM manipulation
+3. **Interaction**: Click toggle theme, double-click fullscreen, 3s mouse idle hide
+4. **Code Quality**: Modular ES6 classes, semantic git commits, comprehensive README
+
+### Files (1,519 lines)
+- `index.html` - Canvas + Glass Card DOM structure
+- `style.css` - 60vw card, 20vw typography, backdrop-filter magic
+- `main.js` - Theme system + event handlers
+- `src/Clock.js` - Time logic + Sine-wave breathing colon
+- `src/Background.js` - Canvas fluid animation with 6 neon orbs
+- `README.md` - Complete documentation
+- `skills.md` - This file (living knowledge base)
+
+### Future Enhancements
+- [ ] Add noise texture overlay for extra realism
+- [ ] Implement ambient sound mode (optional)
+- [ ] PWA support for offline usage
+- [ ] Custom timezone display
