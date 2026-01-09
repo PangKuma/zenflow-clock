@@ -5,7 +5,6 @@ export class Clock {
     this.ampmEl = document.getElementById('ampm');
     this.dateEl = document.getElementById('date');
     this.colonEl = document.querySelector('.colon');
-    this.timeRowEl = document.querySelector('.time-row');
     this.breathPhase = 0;
     this.breathSpeed = 0.03;
     this.is24Hour = true;
@@ -66,9 +65,5 @@ export class Clock {
       requestAnimationFrame(breathe);
     };
     breathe();
-
-    this.timeRowEl.addEventListener('click', () => {
-      this.toggleFormat();
-    });
   }
 }

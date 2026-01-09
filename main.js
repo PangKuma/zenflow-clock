@@ -39,14 +39,24 @@ function resetMouseIdle() {
   }, 3000);
 }
 
+// Click clock-card to toggle 12/24h format (stop propagation to avoid triggering document click)
+document.querySelector('.clock-card').addEventListener('click', (e) => {
+  e.stopPropagation();
+  clock.toggleFormat();
+});
+
+// Click outside clock-card to toggle theme
 document.addEventListener('click', (e) => {
-  if (e.detail === 1) {
-    e.preventDefault();
+  if (!e.target.closest('.clock-card')) {
     toggleTheme();
   }
 });
 
-document.addEventListener('dblclick', toggleFullscreen);
+// Double click anywhere to toggle fullscreen
+document.addEventListener('dblclick', (e) => {
+  e.preventDefault();
+  toggleFullscreen();
+});
 
 document.addEventListener('mousemove', resetMouseIdle);
 document.addEventListener('mousedown', resetMouseIdle);
