@@ -10,10 +10,16 @@
   <body>
     <canvas id="bg-canvas"></canvas>
     <div class="clock-card notranslate" translate="no">
-      <div class="time-group">
-        <span class="digit-group" id="hours">09</span>
-        <span class="colon">:</span>
-        <span class="digit-group" id="minutes">16</span>
+      <div class="clock-content">
+        <div class="time-row">
+          <div class="time-group">
+            <span class="digit-group" id="hours">09</span>
+            <span class="colon">:</span>
+            <span class="digit-group" id="minutes">16</span>
+          </div>
+          <span class="ampm" id="ampm">AM</span>
+        </div>
+        <div class="date-row" id="date">WED, JAN 08</div>
       </div>
     </div>
     <script type="module" src="/main.js"></script>
