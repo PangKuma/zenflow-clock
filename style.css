@@ -108,9 +108,11 @@ body.cursor-hidden {
 }
 
 .colon {
-  opacity: 0.4;
+  --colon-opacity: 0.4;
+  opacity: var(--colon-opacity);
   width: auto;
   margin: 0;
   transform: translateY(-10%);
-  transition: opacity 0.1s ease;
+  transition: --colon-opacity 0.1s ease, opacity 0.1s ease;
+  will-change: opacity;
 }

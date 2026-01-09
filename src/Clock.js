@@ -19,7 +19,7 @@ export class Clock {
   animateColon() {
     this.breathPhase += this.breathSpeed;
     const opacity = 0.4 + (Math.sin(this.breathPhase) + 1) * 0.3;
-    this.colonEl.style.opacity = opacity.toFixed(3);
+    this.colonEl.style.setProperty('--colon-opacity', opacity.toFixed(3));
   }
 
   start() {
