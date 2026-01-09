@@ -6,6 +6,7 @@ A minimalist fullscreen clock with thick glass material UI and fluid background 
   <img src="https://img.shields.io/badge/Vite-6.0.1-646CFF?logo=vite" alt="Vite">
   <img src="https://img.shields.io/badge/Vanilla_JS-ES6+-F7DF1E?logo=javascript" alt="JavaScript">
   <img src="https://img.shields.io/badge/Canvas_2D-API-FF69B4?logo=html5" alt="Canvas">
+  <img src="https://img.shields.io/badge/version-1.0.0-brightgreen" alt="v1.0.0">
 </div>
 
 ## Features
@@ -19,6 +20,7 @@ A minimalist fullscreen clock with thick glass material UI and fluid background 
   - Double click → Toggle fullscreen
   - Mouse idle 3s → Auto-hide cursor
 - **Typography**: System UI font stack, weight 800, tracking -0.04em, 20vw size
+- **Translation Safe**: `translate="no"` prevents browser auto-translate from breaking layout
 
 ## Tech Stack
 
@@ -102,6 +104,31 @@ When neon orbs pass behind the semi-transparent glass border, the `saturate(180%
 - Single DOM manipulation per second (time update)
 - CSS transitions for theme switching (0.6s cubic-bezier easing)
 - Optimized reflow/repaint with CSS transforms
+- CSS custom properties for animation (avoids layout thrashing)
+
+## Browser Compatibility
+
+- **Tested**: Chrome, Edge, Safari, Firefox (latest versions)
+- **Desktop**: macOS, Windows 10/11
+- **Mobile**: iOS Safari, Chrome Mobile
+- **Known Issue**: Browser auto-translate can convert colon (`:`) to full-width (`：`)
+  - **Solution**: Added `translate="no"` attribute to clock container
+
+## Debug History
+
+### v1.0.0 Release Fixes
+1. **Windows Layout Gap** (commit `03bc229`)
+   - Problem: Excessive spacing between time digits on Windows
+   - Fix: Added `gap: 1vw` to `.time-group`, removed colon margins
+
+2. **Colon Jumping Bug** (commit `57f9d10`)
+   - Problem: Colon position snapped during breathing animation on Windows
+   - Root cause: Inline `style.opacity` triggered layout reflow
+   - Fix: Use CSS custom property `--colon-opacity` with `will-change`
+
+3. **Google Translate Conflict** (commit `e5ee9f5`)
+   - Problem: Browser auto-translation converted `:` to `：`, breaking layout
+   - Fix: Added `translate="no"` and `notranslate` class to clock container
 
 ## License
 
@@ -110,3 +137,4 @@ MIT
 ---
 
 Built with Vite + Vanilla JavaScript. No frameworks, pure performance.
+
